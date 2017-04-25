@@ -18,6 +18,7 @@ public class BinaryPanelTest {
 	
 	@Before
 	public void clearNumbers(){
+		//System.out.println("Clearing");
 		panel.setZero();
 	}
 	

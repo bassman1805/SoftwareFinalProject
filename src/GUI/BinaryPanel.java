@@ -1,20 +1,40 @@
 package GUI;
 
 public class BinaryPanel {
+	public final int NUM_BUTTONS = 8;
+	private DigitButton buttons[];
+	
+	public BinaryPanel(){
+		// set up the buttons
+		buttons = new DigitButton[NUM_BUTTONS];
+		for(int i=0; i < NUM_BUTTONS; i++){
+			buttons[i] = new DigitButton(i);
+		}
+	}
+	
+	////////// Getters \\\\\\\\\\
+	
+	public int getValue() {
+		int retVal = 0;
+		System.out.println("Getting Panel Value...");
+		for(DigitButton button : buttons){
+			System.out.println(button);
+			retVal += button.getValue();
+		}
+		System.out.println("");
+		return retVal;
+	}
+	
+	////////// Setters \\\\\\\\\\
 
 	public void setZero() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Object getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		for(DigitButton button : buttons){
+			button.setOn(false);
+		}
 	}
 
 	public void setButton(int i, boolean b) {
-		// TODO Auto-generated method stub
-		
+		buttons[i].setOn(b);
 	}
 
 }
