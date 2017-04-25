@@ -3,6 +3,7 @@ package GUI;
 public class BinaryPanel {
 	public final int NUM_BUTTONS = 8;
 	private DigitButton buttons[];
+	private boolean editable;
 	
 	public BinaryPanel(){
 		// set up the buttons
@@ -10,6 +11,7 @@ public class BinaryPanel {
 		for(int i=0; i < NUM_BUTTONS; i++){
 			buttons[i] = new DigitButton(i);
 		}
+		editable = true;
 	}
 	
 	////////// Getters \\\\\\\\\\
