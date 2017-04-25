@@ -27,9 +27,10 @@ public class RNGtest {
 			temp = rng.generateDecimal();
 			counters[temp]++;
 		}
-
+		
 		for(int i:counters){
 			assertEquals(125, i, 30);
+			//System.out.println(i);
 		}
 	}
 
@@ -63,9 +64,10 @@ public class RNGtest {
 			temp = rng.generateDecimal();
 			counters[temp]++;
 		}
+		
 
 		for(int i:counters){
-			assertEquals(625, i, 50);
+			assertEquals(625, i, 80);
 		}
 	}
 
@@ -83,7 +85,7 @@ public class RNGtest {
 		}
 
 		for(int i:counters){
-			assertEquals(625, i, 50);
+			assertEquals(625, i, 80);
 		}
 	}
 	
@@ -98,10 +100,10 @@ public class RNGtest {
 		for(int i=0; i < 100000; i++){
 			temp = rng.generateDecimal();
 			counters[temp]++;
+	
 		}
-
 		for(int i:counters){
-			assertEquals(390, i, 50);
+			assertEquals(390, i, 90);
 		}
 	}
 
@@ -117,9 +119,14 @@ public class RNGtest {
 			temp = rng.generateBinary();
 			counters[temp]++;
 		}
+		for(int i=0;i<100;i++){
+			
+		}
+			
 
 		for(int i:counters){
-			assertEquals(390, i, 50);
+			System.out.println(Integer.toBinaryString(i));
+			assertEquals(390, i, 90);
 		}
 	}
 
