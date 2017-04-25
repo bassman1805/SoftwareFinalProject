@@ -125,7 +125,7 @@ public class RNGtest {
 			
 
 		for(int i:counters){
-			System.out.println(Integer.toBinaryString(i));
+			//System.out.println(Integer.toBinaryString(i));
 			assertEquals(390, i, 90);
 		}
 	}
