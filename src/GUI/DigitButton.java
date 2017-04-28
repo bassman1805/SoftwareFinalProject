@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
@@ -38,6 +39,10 @@ public class DigitButton extends JPanel{
 		on = newVal;
 	}
 	
+	public void toggle(){
+		on = !on;
+	}
+	
 	////////// Drawing/GUI \\\\\\\\\\
 
 	public void paintComponent(Graphics g) {
@@ -67,5 +72,12 @@ public class DigitButton extends JPanel{
 	@Override
 	public String toString() {
 		return "DigitButton [Digit = " + digit + ", On = " + on + ", Value = " + this.getValue() + "]";
+	}
+
+	public boolean containsClick(int mouseX, int mouseY) {
+		Rectangle rect = new Rectangle(myXpos, myYpos, BUTTON_SIZE, BUTTON_SIZE);
+		if (rect.contains(mouseX, mouseY)) 
+			return true;
+		return false;
 	}
 }

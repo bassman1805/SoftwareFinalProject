@@ -2,11 +2,13 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class BinaryPanel extends JPanel{
+public class BinaryPanel extends JPanel implements MouseListener{
 	public final int NUM_BUTTONS = 8;
 	private DigitButton buttons[];
 	private boolean editable;
@@ -20,6 +22,7 @@ public class BinaryPanel extends JPanel{
 		
 		setBorder(BorderFactory.createTitledBorder("Binary Number"));
 		
+		addMouseListener(this);
 		editable = true;
 	}
 	
@@ -27,12 +30,12 @@ public class BinaryPanel extends JPanel{
 	
 	public int getValue() {
 		int retVal = 0;
-		System.out.println("Getting Panel Value...");
+		//System.out.println("Getting Panel Value...");
 		for(DigitButton button : buttons){
-			System.out.println(button);
+			//System.out.println(button);
 			retVal += button.getValue();
 		}
-		System.out.println("");
+		//System.out.println("");
 		return retVal;
 	}
 	
@@ -59,6 +62,44 @@ public class BinaryPanel extends JPanel{
 		for(DigitButton button : buttons){
 			button.paintComponent(g);
 		}
+	}
+	
+	////////// Mouse Listener \\\\\\\\\\
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		DigitButton clicked = null;
+		
+		for(DigitButton button : buttons){
+			if(button.containsClick(e.getX(), e.getY())) clicked = button;
+		}
+		
+		if(clicked != null) clicked.toggle();
+		this.repaint();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
