@@ -137,7 +137,7 @@ public class GameDisplay extends JFrame{
 						+"If the binary buttons are orange, type in the decimal version in the text box above it\n"
 					    +"If the text feild has a number, click the binary buttons on and off to make the binary representation of that number\n"
 						+"\nWhen you think the numbers are mathcing, click submit\n"
-					    +"There are six levels, each has ten queations"
+					    +"There are six levels, each has ten questions"
 						+"\n Level | Decimal Range | Max Binary Digits"
 						+"\n  1    |        0-7      |       3"
 						+"\n  2    |       0-15     |       4"
