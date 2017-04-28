@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -22,9 +23,9 @@ public class GameDisplay extends JFrame{
 	static Graphics g;
 
 	private BinaryPanel binPanel;
-	private LevelBar progress;
+	private JProgressBar progress;
 	private JMenuBar menus;
-	private JTextField textBase10, lvlCounter;
+	private JTextField textBase10;
 	private JButton submit;
 
 	private NumberGen generator;
@@ -38,42 +39,49 @@ public class GameDisplay extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setSize(500,200);
-		panel.setLayout(new GridLayout(2,1));
+		panel.setLayout(new GridLayout(0,1));
 
 		setName("Binary game"); //TODO: Make a better name
 
-		UserInput user = new UserInput();
-		panel.add(user);
+		textBase10 = new JTextField(10);
+		textBase10.setHorizontalAlignment(JTextField.CENTER);
+		panel.add(textBase10);
+		
+		
 		binPanel = new BinaryPanel();
 		panel.add(binPanel);
 		
-		add(panel);
+		add(panel, BorderLayout.CENTER);
 		
-		JPanel buttPanel = new JPanel();
-		buttPanel.setLayout(new GridLayout(1,1));
 		JButton submit = new JButton("SUBMIT");
 		submit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(user.getText());
+				System.out.println(textBase10.getText());
 				
 			}
 		
 		});
-		buttPanel.add(submit);
-		add(buttPanel, BorderLayout.SOUTH);
+		
+		add(submit, BorderLayout.SOUTH);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,300);
 
-		binPanel = new BinaryPanel();
-		add(binPanel, BorderLayout.CENTER);
-
-		//game.add(menus);
+		//binPanel = new BinaryPanel();
+		//add(binPanel, BorderLayout.CENTER);
+		
+		progress = new JProgressBar();
+		add(progress, BorderLayout.NORTH);
+		progress.setString("Level 1");
+		progress.setStringPainted(true);
 
 
 		//game.add(textBase10);
+		
+		
+		
 		//game.add(lvlCounter);
 		//game.add(submit);
 
