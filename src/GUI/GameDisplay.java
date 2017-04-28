@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 import Game.NumberGen;
 
 public class GameDisplay extends JFrame{
-	static Graphics g;
+	static GameDisplay g;
 
 	private BinaryPanel binPanel;
 	private JProgressBar progress;
@@ -62,6 +62,9 @@ public class GameDisplay extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try{
+					
+				
 				//System.out.println(textBase10.getText());
 				if(Integer.parseInt(textBase10.getText())==	binPanel.getValue()){
 					//System.out.println("they are the same");
@@ -69,6 +72,13 @@ public class GameDisplay extends JFrame{
 					if(progress.getValue()>=99){
 						progress.setValue(0);
 						lvl++;
+						if(lvl>=7){
+							JOptionPane.showMessageDialog(g,
+								    "You won.  The game will close now",
+								    "Binary Game",
+								    JOptionPane.INFORMATION_MESSAGE);
+							System.exit(0);
+						}
 						generator.setLevel(lvl);
 						progress.setString("Level "+lvl);
 					}
@@ -76,13 +86,18 @@ public class GameDisplay extends JFrame{
 				}
 				else{
 					//TODO: Error message when you get it wrong
-					JOptionPane.showMessageDialog(panel,
+					JOptionPane.showMessageDialog(g,
 						    "The decimal number is: " + textBase10.getText() + "\nThe binary number is: " + binPanel.getValue() + ".",
 						    "Incorrect",
 						    JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
+				catch(NumberFormatException er){
+					//System.out.println("???");
+					textBase10.setText("Enter your number Here, in this box, after you delete this message");
+				}
+		}
 		
 		});
 		
@@ -113,7 +128,31 @@ public class GameDisplay extends JFrame{
 	}
 	private JMenuItem createHelpItem(){
 		JMenuItem item = new JMenuItem("Help");
-		
+		class helpListener implements ActionListener {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("help");
+				JOptionPane.showMessageDialog(g,
+					    "Welcome, enter in the binary number or decimal\n"
+						+"If the binary buttons are orange, type in the decimal version in the text box above it\n"
+					    +"If the text feild has a number, click the binary buttons on and off to make the binary representation of that number\n"
+						+"\nWhen you think the numbers are mathcing, click submit\n"
+					    +"There are six levels, each has ten queations"
+						+"\n Level | Decimal Range | Max Binary Digits"
+						+"\n  1    |        0-7      |       3"
+						+"\n  2    |       0-15     |       4"
+						+"\n  3    |       0-31     |       5"
+						+"\n  4    |       0-63     |       6"
+						+"\n  5    |      0-127    |       7"
+						+"\n  6    |      0-255    |       8"
+						
+						+"\n\nAuthors: Josh Hoskinson, Robert Lewis, Nick Smith, Jess Wolf",
+					    "Binary Game",
+					    JOptionPane.PLAIN_MESSAGE);
+
+			}
+		}
+		item.addActionListener(new helpListener());
 		return item;
 	}
 
@@ -160,7 +199,7 @@ public class GameDisplay extends JFrame{
 
 
 	public static void main(String[] args) {
-		GameDisplay g = new GameDisplay();
+		g = new GameDisplay();
 		g.setVisible(true);
 		g.setTitle("Super Awsome Binary Game");
 		JOptionPane.showMessageDialog(g,
