@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class BinaryPanel extends JPanel{
@@ -16,6 +17,9 @@ public class BinaryPanel extends JPanel{
 		for(int i=0; i < NUM_BUTTONS; i++){
 			buttons[i] = new DigitButton(i);
 		}
+		
+		setBorder(BorderFactory.createTitledBorder("Binary Number"));
+		
 		editable = true;
 	}
 	
