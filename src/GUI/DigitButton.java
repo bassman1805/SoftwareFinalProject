@@ -18,7 +18,7 @@ public class DigitButton extends JPanel{
 		on = false;
 		digit = myDigit;
 		
-		myYpos = 100;
+		myYpos = 0;
 		myXpos = 50 + (7-digit)*BUTTON_SIZE*11/10;
 	}
 	
