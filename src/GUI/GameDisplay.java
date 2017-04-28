@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
@@ -62,16 +64,22 @@ public class GameDisplay extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println(textBase10.getText());
 				if(Integer.parseInt(textBase10.getText())==	binPanel.getValue()){
-					System.out.println("they are the sdame");
+					//System.out.println("they are the same");
 					progress.setValue(progress.getValue()+INC);
 					if(progress.getValue()>=99){
 						progress.setValue(0);
 						lvl++;
+						generator.setLevel(lvl);
 						progress.setString("Level "+lvl);
 					}
+					doOneRound();
 				}
 				else{
-					System.out.println("not the same");
+					//TODO: Error message when you get it wrong
+					JOptionPane.showMessageDialog(new JFrame(),
+						    "The decimal number is: " + textBase10.getText() + "\nThe binary number is: " + binPanel.getValue() + ".",
+						    "Incorrect",
+						    JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
@@ -82,25 +90,16 @@ public class GameDisplay extends JFrame{
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,300);
-
-		//binPanel = new BinaryPanel();
-		//add(binPanel, BorderLayout.CENTER);
 		
 		progress = new JProgressBar();
 		add(progress, BorderLayout.NORTH);
 		progress.setString("Level "+lvl);
 		progress.setStringPainted(true);
 
+		generator = new NumberGen();
+		generator.setLevel(lvl);
 
-		//game.add(textBase10);
-		
-		
-		
-		//game.add(lvlCounter);
-		//game.add(submit);
-
-
-
+		doOneRound();
 	}
 
 
@@ -125,6 +124,36 @@ public class GameDisplay extends JFrame{
 		return item;
 	}
 
+	////////// Game Actions \\\\\\\\\\
+	
+	public void doOneRound(){
+		if(new Random().nextBoolean()){ //flip a coin to decide if we do a decimal or binary number
+			//give them a decimal
+			
+			//Write the goal number in the text box
+			textBase10.setEditable(true);
+			Integer goal = generator.generateDecimal();
+			textBase10.setText(goal.toString());
+			
+			textBase10.setEditable(false);
+			binPanel.setEditable(true);
+			binPanel.setValue(0);
+		}
+		else{
+			//give them a binary number
+			
+			binPanel.setEditable(true);
+			Integer goal = generator.generateBinary();
+			binPanel.setValue(goal);
+			System.out.println(goal);
+			System.out.println(binPanel.getValue());
+			
+			textBase10.setEditable(true);
+			textBase10.setText("");
+			binPanel.setEditable(false);
+		}
+		binPanel.repaint();
+	}
 
 
 	public static void main(String[] args) {

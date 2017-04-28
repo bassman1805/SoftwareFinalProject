@@ -49,6 +49,16 @@ public class BinaryPanel extends JPanel implements MouseListener{
 			button.setOn(false);
 		}
 	}
+	
+	public void setValue(int value){
+		this.setZero();
+		for(int i=7; i >=0; i--){
+			if(value >= Math.pow(2,i)){
+				buttons[i].setOn(true);
+				value -= Math.pow(2,i);
+			}
+		}
+	}
 
 	public void setButton(int i, boolean b) {
 		buttons[i].setOn(b);
