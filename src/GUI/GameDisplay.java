@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,11 +22,11 @@ public class GameDisplay extends JFrame{
 	private JMenuBar menus;
 	private JTextField textBase10, lvlCounter;
 	private JButton submit;
-	private JFrame game;
 	
 	private NumberGen generator;
 	
 	GameDisplay() {
+
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +34,16 @@ public class GameDisplay extends JFrame{
 		menus = new JMenuBar();
 		setJMenuBar(menus);
 		menus.add(createFileMenu());
+
+		setName("Binary game"); //TODO: Make a better name
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(500,300);
+		
+		binPanel = new BinaryPanel();
+		add(binPanel, BorderLayout.CENTER);
+		
+		//game.add(menus);
+
 		//game.add(textBase10);
 		//game.add(lvlCounter);
 		//game.add(submit);
