@@ -76,7 +76,7 @@ public class GameDisplay extends JFrame{
 				}
 				else{
 					//TODO: Error message when you get it wrong
-					JOptionPane.showMessageDialog(new JFrame(),
+					JOptionPane.showMessageDialog(panel,
 						    "The decimal number is: " + textBase10.getText() + "\nThe binary number is: " + binPanel.getValue() + ".",
 						    "Incorrect",
 						    JOptionPane.ERROR_MESSAGE);
@@ -108,7 +108,13 @@ public class GameDisplay extends JFrame{
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
 		menu.add(createFileExitItem());
+		menu.add(createHelpItem());
 		return menu;
+	}
+	private JMenuItem createHelpItem(){
+		JMenuItem item = new JMenuItem("Help");
+		
+		return item;
 	}
 
 	private JMenuItem createFileExitItem() {
@@ -133,8 +139,7 @@ public class GameDisplay extends JFrame{
 			//Write the goal number in the text box
 			textBase10.setEditable(true);
 			Integer goal = generator.generateDecimal();
-			textBase10.setText(goal.toString());
-			
+			textBase10.setText(goal.toString());			
 			textBase10.setEditable(false);
 			binPanel.setEditable(true);
 			binPanel.setValue(0);
@@ -145,9 +150,7 @@ public class GameDisplay extends JFrame{
 			binPanel.setEditable(true);
 			Integer goal = generator.generateBinary();
 			binPanel.setValue(goal);
-			System.out.println(goal);
-			System.out.println(binPanel.getValue());
-			
+						
 			textBase10.setEditable(true);
 			textBase10.setText("");
 			binPanel.setEditable(false);
@@ -159,6 +162,11 @@ public class GameDisplay extends JFrame{
 	public static void main(String[] args) {
 		GameDisplay g = new GameDisplay();
 		g.setVisible(true);
+		g.setTitle("Super Awsome Binary Game");
+		JOptionPane.showMessageDialog(g,
+			    "Welcome, enter in the binary number or decimal\nOnly one feild will be editable at a time.\nFor more help, File->Help",
+			    "Binary Game",
+			    JOptionPane.PLAIN_MESSAGE);
 	}
 
 }
