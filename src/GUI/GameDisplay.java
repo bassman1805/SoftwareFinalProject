@@ -20,19 +20,16 @@ import Game.NumberGen;
 
 public class GameDisplay extends JFrame{
 	static Graphics g;
-	
+
 	private BinaryPanel binPanel;
 	private LevelBar progress;
 	private JMenuBar menus;
 	private JTextField textBase10, lvlCounter;
 	private JButton submit;
-	
-	private NumberGen generator;
-	
-	GameDisplay() {
 
-		
-		
+	private NumberGen generator;
+
+	GameDisplay() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,300);
 		menus = new JMenuBar();
@@ -44,6 +41,7 @@ public class GameDisplay extends JFrame{
 		panel.setLayout(new GridLayout(2,1));
 
 		setName("Binary game"); //TODO: Make a better name
+
 		UserInput user = new UserInput();
 		panel.add(user);
 		binPanel = new BinaryPanel();
@@ -66,18 +64,26 @@ public class GameDisplay extends JFrame{
 		buttPanel.add(submit);
 		add(buttPanel, BorderLayout.SOUTH);
 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(500,300);
+
+		binPanel = new BinaryPanel();
+		add(binPanel, BorderLayout.CENTER);
+
+		//game.add(menus);
+
 
 		//game.add(textBase10);
 		//game.add(lvlCounter);
 		//game.add(submit);
-		
-		
-		
+
+
+
 	}
-	
-	
-	
-	
+
+
+
+
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
 		menu.add(createFileExitItem());
@@ -90,7 +96,7 @@ public class GameDisplay extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
-				
+
 			}
 		}
 		item.addActionListener(new MenuItemListener());
