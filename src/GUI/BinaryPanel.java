@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,6 +13,7 @@ public class BinaryPanel extends JPanel implements MouseListener{
 	private boolean editable;
 	
 	public BinaryPanel(){
+		editable = true;
 		// set up the buttons
 		buttons = new DigitButton[NUM_BUTTONS];
 		for(int i=0; i < NUM_BUTTONS; i++){
@@ -23,7 +23,6 @@ public class BinaryPanel extends JPanel implements MouseListener{
 		setBorder(BorderFactory.createTitledBorder("Binary Number"));
 		
 		addMouseListener(this);
-		editable = true;
 	}
 	
 	////////// Getters \\\\\\\\\\
@@ -39,6 +38,10 @@ public class BinaryPanel extends JPanel implements MouseListener{
 		return retVal;
 	}
 	
+	public boolean isEditable(){
+		return editable;
+	}
+	
 	////////// Setters \\\\\\\\\\
 
 	public void setZero() {
@@ -49,6 +52,13 @@ public class BinaryPanel extends JPanel implements MouseListener{
 
 	public void setButton(int i, boolean b) {
 		buttons[i].setOn(b);
+	}
+	
+	public void setEditable(boolean edit){
+		editable = edit;
+		for(DigitButton button : buttons){
+			button.setEditable(edit);
+		}
 	}
 	
 	////////// GUI and Drawing \\\\\\\\\\
