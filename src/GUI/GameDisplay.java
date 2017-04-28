@@ -2,15 +2,19 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Game.NumberGen;
 
@@ -27,12 +31,39 @@ public class GameDisplay extends JFrame{
 
 	GameDisplay() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(300,500);
+		setSize(500,300);
 		menus = new JMenuBar();
 		setJMenuBar(menus);
 		menus.add(createFileMenu());
+		
+		JPanel panel = new JPanel();
+		panel.setSize(500,200);
+		panel.setLayout(new GridLayout(2,1));
 
 		setName("Binary game"); //TODO: Make a better name
+
+		UserInput user = new UserInput();
+		panel.add(user);
+		binPanel = new BinaryPanel();
+		panel.add(binPanel);
+		
+		add(panel);
+		
+		JPanel buttPanel = new JPanel();
+		buttPanel.setLayout(new GridLayout(1,1));
+		JButton submit = new JButton("SUBMIT");
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(user.getText());
+				
+			}
+		
+		});
+		buttPanel.add(submit);
+		add(buttPanel, BorderLayout.SOUTH);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,300);
 
@@ -40,6 +71,7 @@ public class GameDisplay extends JFrame{
 		add(binPanel, BorderLayout.CENTER);
 
 		//game.add(menus);
+
 
 		//game.add(textBase10);
 		//game.add(lvlCounter);
@@ -70,7 +102,6 @@ public class GameDisplay extends JFrame{
 		item.addActionListener(new MenuItemListener());
 		return item;
 	}
-
 
 
 
