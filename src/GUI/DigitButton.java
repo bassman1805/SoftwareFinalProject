@@ -43,11 +43,11 @@ public class DigitButton extends JPanel{
 	}
 	
 	public void setOn(boolean newVal){
-		on = newVal;
+		if(editable) on = newVal;
 	}
 	
 	public void toggle(){
-		on = !on;
+		if(editable) on = !on;
 	}
 	
 	////////// Drawing/GUI \\\\\\\\\\
