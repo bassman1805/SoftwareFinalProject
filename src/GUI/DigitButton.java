@@ -13,6 +13,7 @@ public class DigitButton extends JPanel{
 	private int digit;
 	private int myXpos;
 	private int myYpos;
+	private boolean editable;
 	
 	public static final int BUTTON_SIZE = 30;
 	
@@ -22,6 +23,8 @@ public class DigitButton extends JPanel{
 		
 		myYpos = 0;
 		myXpos = 50 + (7-digit)*BUTTON_SIZE*11/10;
+		
+		editable = true;
 	}
 	
 	////////// Getters \\\\\\\\\\
@@ -34,6 +37,10 @@ public class DigitButton extends JPanel{
 	}
 	
 	////////// Setters \\\\\\\\\\
+	
+	public void setEditable(boolean edit){
+		editable = edit;
+	}
 	
 	public void setOn(boolean newVal){
 		on = newVal;
@@ -51,8 +58,8 @@ public class DigitButton extends JPanel{
 	}
 
 	public void draw(Graphics g) {
-		if(on) g.setColor(Color.CYAN);
-		else g.setColor(Color.YELLOW);
+		if(editable) g.setColor(Color.YELLOW);
+		else g.setColor(Color.ORANGE);
 		g.fillRect(myXpos, myYpos, BUTTON_SIZE, BUTTON_SIZE);
 		
 		g.setColor(Color.BLACK);
@@ -63,6 +70,7 @@ public class DigitButton extends JPanel{
 		if(on) text = "1";
 		else text = "0";
 		g.setFont(new Font("Courier New", 1, 18));
+		//Strange constants are to make the numbers centered on the button
 		g.drawString(text, myXpos+(BUTTON_SIZE/3), myYpos+(BUTTON_SIZE*2/3));
 	}
 
