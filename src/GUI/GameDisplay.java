@@ -27,6 +27,8 @@ public class GameDisplay extends JFrame{
 	private JMenuBar menus;
 	private JTextField textBase10;
 	private JButton submit;
+	private final int INC =10;
+	private int lvl=1;
 
 	private NumberGen generator;
 
@@ -58,7 +60,19 @@ public class GameDisplay extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(textBase10.getText());
+				//System.out.println(textBase10.getText());
+				if(Integer.parseInt(textBase10.getText())==	binPanel.getValue()){
+					System.out.println("they are the sdame");
+					progress.setValue(progress.getValue()+INC);
+					if(progress.getValue()>=99){
+						progress.setValue(0);
+						lvl++;
+						progress.setString("Level "+lvl);
+					}
+				}
+				else{
+					System.out.println("not the same");
+				}
 				
 			}
 		
@@ -74,7 +88,7 @@ public class GameDisplay extends JFrame{
 		
 		progress = new JProgressBar();
 		add(progress, BorderLayout.NORTH);
-		progress.setString("Level 1");
+		progress.setString("Level "+lvl);
 		progress.setStringPainted(true);
 
 

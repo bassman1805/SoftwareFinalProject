@@ -21,8 +21,8 @@ public class DigitButton extends JPanel{
 		on = false;
 		digit = myDigit;
 		
-		myYpos = 0;
-		myXpos = 50 + (7-digit)*BUTTON_SIZE*11/10;
+		myYpos = 35;
+		myXpos = 100 + (7-digit)*BUTTON_SIZE*12/10;
 		
 		editable = true;
 	}
