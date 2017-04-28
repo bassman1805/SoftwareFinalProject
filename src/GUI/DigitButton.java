@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -8,10 +9,17 @@ public class DigitButton extends JPanel{
 	
 	private boolean on;
 	private int digit;
+	private int myXpos;
+	private int myYpos;
+	
+	public static final int BUTTON_SIZE = 30;
 	
 	public DigitButton(int myDigit){
 		on = false;
 		digit = myDigit;
+		
+		myYpos = 100;
+		myXpos = 50 + (7-digit)*BUTTON_SIZE*11/10;
 	}
 	
 	////////// Getters \\\\\\\\\\
@@ -37,7 +45,12 @@ public class DigitButton extends JPanel{
 	}
 
 	public void draw(Graphics g) {
+		if(on) g.setColor(Color.CYAN);
+		else g.setColor(Color.YELLOW);
 		
+		g.fillRect(myXpos, myYpos, BUTTON_SIZE, BUTTON_SIZE);
+		g.setColor(Color.BLACK);
+		g.drawRect(myXpos, myYpos, BUTTON_SIZE, BUTTON_SIZE);
 	}
 
 	

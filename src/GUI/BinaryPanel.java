@@ -1,6 +1,11 @@
 package GUI;
 
-public class BinaryPanel {
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class BinaryPanel extends JPanel{
 	public final int NUM_BUTTONS = 8;
 	private DigitButton buttons[];
 	private boolean editable;
@@ -37,6 +42,19 @@ public class BinaryPanel {
 
 	public void setButton(int i, boolean b) {
 		buttons[i].setOn(b);
+	}
+	
+	////////// GUI and Drawing \\\\\\\\\\
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		draw(g);
+	}
+
+	public void draw(Graphics g) {
+		for(DigitButton button : buttons){
+			button.paintComponent(g);
+		}
 	}
 
 }
