@@ -74,7 +74,7 @@ public class GameDisplay extends JFrame{
 						lvl++;
 						if(lvl>=7){
 							JOptionPane.showMessageDialog(g,
-								    "You won.  The game will close now",
+								    "Congrats, You won!  The game will close now",
 								    "Binary Game",
 								    JOptionPane.INFORMATION_MESSAGE);
 							System.exit(0);
@@ -90,6 +90,7 @@ public class GameDisplay extends JFrame{
 						    "The decimal number is: " + textBase10.getText() + "\nThe binary number is: " + binPanel.getValue() + ".",
 						    "Incorrect",
 						    JOptionPane.ERROR_MESSAGE);
+						doOneRound();
 				}
 				
 			}
@@ -118,12 +119,11 @@ public class GameDisplay extends JFrame{
 	}
 
 
-
-
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
-		menu.add(createFileExitItem());
 		menu.add(createHelpItem());
+		menu.add(createFileExitItem());
+		
 		return menu;
 	}
 	private JMenuItem createHelpItem(){
@@ -133,10 +133,10 @@ public class GameDisplay extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("help");
 				JOptionPane.showMessageDialog(g,
-					    "Welcome, enter in the binary number or decimal\n"
+					    "Welcome, enter in the binary or decimal number\n"
 						+"If the binary buttons are orange, type in the decimal version in the text box above it\n"
-					    +"If the text feild has a number, click the binary buttons on and off to make the binary representation of that number\n"
-						+"\nWhen you think the numbers are mathcing, click submit\n"
+					    +"If the text field has a number, click the binary buttons on and off to make the binary representation of that number\n"
+						+"\nWhen you think the numbers are matching, click submit\n"
 					    +"There are six levels, each has ten questions"
 						+"\n Level | Decimal Range | Max Binary Digits"
 						+"\n  1    |        0-7      |       3"
@@ -203,7 +203,7 @@ public class GameDisplay extends JFrame{
 		g.setVisible(true);
 		g.setTitle("Super Awsome Binary Game");
 		JOptionPane.showMessageDialog(g,
-			    "Welcome, enter in the binary number or decimal\nOnly one feild will be editable at a time.\nFor more help, File->Help",
+			    "Welcome, enter in the binary or decimal number\nOnly one field will be editable at a time.\nFor more help, File->Help",
 			    "Binary Game",
 			    JOptionPane.PLAIN_MESSAGE);
 	}
